@@ -6,9 +6,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: WaterManager
     steps:
       - uses: actions/checkout@v4
 
@@ -17,11 +14,23 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Make gradlew executable
-        run: chmod +x gradlew
+      - name: Install Gradle
+        run: |
+          wget -q https://services.gradle.org/distributions/gradle-8.0-bin.zip
+          unzip -q gradle-8.0-bin.zip
+          export PATH=$PWD/gradle-8.0/bin:$PATH
+          echo "GRADLE_HOME=$PWD/gradle-8.0" >> $GITHUB_ENV
+          echo "$PWD/gradle-8.0/bin" >> $GITHUB_PATH
 
-      - name: Build Debug APK
-        run: ./gradlew assembleDebug
+      - name: Generate Gradle Wrapper
+        working-directory: WaterManager
+        run: gradle wrapper --gradle-version 8.0
+
+      - name: Build APK
+        working-directory: WaterManager
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug --stacktrace
 
       - uses: actions/upload-artifact@v4
         with:
