@@ -3,8 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="?attr/colorBackground">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,17 +11,14 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Title -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="🚰 Water Entry"
+            android:text="Water Entry"
             android:textSize="24sp"
             android:textStyle="bold"
-            android:textColor="?attr/colorOnBackground"
             android:layout_marginBottom="20dp"/>
 
-        <!-- Time Picker Card -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,7 +37,6 @@
                     android:layout_height="wrap_content"
                     android:text="Tank Filled At"
                     android:textSize="14sp"
-                    android:textColor="?attr/colorOnSurfaceVariant"
                     android:layout_marginBottom="8dp"/>
 
                 <LinearLayout
@@ -55,8 +50,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="00:00"
-                        android:textSize="36sp"
+                        android:text="08:00"
+                        android:textSize="40sp"
                         android:textStyle="bold"
                         android:textColor="?attr/colorPrimary"/>
 
@@ -64,19 +59,17 @@
                         android:id="@+id/btnPickTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Change"
+                        android:text="Change Time"
                         app:cornerRadius="8dp"/>
 
                 </LinearLayout>
-
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Duration Card -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="14dp"
+            android:layout_marginBottom="20dp"
             app:cardElevation="4dp"
             app:cardCornerRadius="12dp">
 
@@ -91,53 +84,27 @@
                     android:layout_height="wrap_content"
                     android:text="Duration (minutes)"
                     android:textSize="14sp"
-                    android:textColor="?attr/colorOnSurfaceVariant"
-                    android:layout_marginBottom="8dp"/>
+                    android:layout_marginBottom="10dp"/>
 
-                <com.google.android.material.textfield.TextInputLayout
+                <EditText
+                    android:id="@+id/etDuration"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="e.g. 45"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etDuration"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:maxLength="4"
-                        android:textSize="18sp"/>
-
-                </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="56dp"
+                    android:hint="Enter minutes e.g. 45"
+                    android:inputType="number"
+                    android:maxLength="4"
+                    android:textSize="20sp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"/>
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Info note -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            app:cardElevation="0dp"
-            app:cardCornerRadius="10dp"
-            app:cardBackgroundColor="#E3F2FD">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="14dp"
-                android:text="ℹ️ End time will be calculated automatically. Go to Tenants tab first to select who receives the SMS."
-                android:textSize="13sp"
-                android:textColor="#1565C0"/>
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Preview Button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnPreviewSms"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:text="Preview &amp; Send SMS →"
+            android:text="Preview and Send SMS"
             android:textSize="16sp"
             app:cornerRadius="12dp"/>
 
