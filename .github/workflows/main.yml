@@ -14,12 +14,18 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Fix theme attributes
+        working-directory: WaterManager
+        run: |
+          find app/src/main/res/layout -name "*.xml" -exec sed -i \
+            's/?attr\/colorOnSurfaceVariant/?attr\/colorOnSurface/g;
+             s/?attr\/colorBackground/#FAFAFA/g;
+             s/?attr\/colorSurface/#FFFFFF/g' {} \;
+
       - name: Install Gradle
         run: |
           wget -q https://services.gradle.org/distributions/gradle-8.0-bin.zip
           unzip -q gradle-8.0-bin.zip
-          export PATH=$PWD/gradle-8.0/bin:$PATH
-          echo "GRADLE_HOME=$PWD/gradle-8.0" >> $GITHUB_ENV
           echo "$PWD/gradle-8.0/bin" >> $GITHUB_PATH
 
       - name: Generate Gradle Wrapper
@@ -30,7 +36,7 @@ jobs:
         working-directory: WaterManager
         run: |
           chmod +x gradlew
-          ./gradlew assembleDebug --stacktrace
+          ./gradlew assembleDebug --stacktrace 2>&1 | tail -50
 
       - uses: actions/upload-artifact@v4
         with:
