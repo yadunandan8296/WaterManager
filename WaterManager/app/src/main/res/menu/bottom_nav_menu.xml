@@ -3,17 +3,14 @@
 
     <item
         android:id="@+id/tenantsFragment"
-        android:icon="@android:drawable/ic_menu_myplaces"
         android:title="Tenants" />
 
     <item
         android:id="@+id/waterEntryFragment"
-        android:icon="@android:drawable/ic_menu_add"
         android:title="Water Entry" />
 
     <item
         android:id="@+id/historyFragment"
-        android:icon="@android:drawable/ic_menu_recent_history"
         android:title="History" />
 
 </menu>
